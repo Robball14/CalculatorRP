@@ -1,0 +1,559 @@
+/*
+	RP CALCULATOR v2
+
+	Changelog:
+
+	Added Israel:
+	- Rank 1 to 3 are not calculated and their value corresponds to 0 by default
+	Added a Thousands separator
+
+	Bug fixes:
+
+		Fixed a bug with the Tot variable:
+			-All Nations variables tipe has been changed "int" -> "void"
+			-"Tot" variable is no longer an array
+			-"Tot" variable is now a global variable
+	
+	Internal:
+
+		Added a Pseudocode
+		Added Changelog
+
+*/
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+ofstream res("rank.txt"); // opening external file for better visualization and easier comparation
+int Tot; // Total rp
+
+// Thousand Separator
+string Separator(int n) {
+	auto src = to_string(n);
+	auto dest = string();
+
+	auto count = 3;
+	for (auto i = src.crbegin(); i != src.crend(); ++i) {
+		if (count == 0)
+		{
+			dest.push_back('.');
+			count = 3;
+		}
+		if (count--) {
+			dest.push_back(*i);
+		}
+	}
+	reverse(dest.begin(), dest.end());
+	return dest;
+}
+
+// Rank 1
+int R1(int R[]) {
+	int N;
+	int tot = 0;
+	cout << "insert number of vehicles in Rank 1\n";
+	cin >> N;
+	if (N <= 0) {
+		cout << "Null\n";
+		tot = 0;
+		return tot;
+	}
+	else {
+		for (int i = 1; i <= N; i++) {
+			do {
+				cout << "insert vehicle's RP\n";
+				cin >> R[i];
+			} while (R[i] < 0);
+			tot += R[i];
+		}
+		return tot;
+	}
+	
+} 
+
+// Rank 2
+int R2(int R[]) {
+	int N;
+	int tot = 0;
+	cout << "insert number of vehicles in Rank 2\n";
+	cin >> N;
+	if (N <= 0) {
+		cout << "Null\n";
+		tot = 0;
+		return tot;
+	}
+	else {
+		for (int i = 1; i <= N; i++) {
+			do {
+				cout << "insert vehicle's RP\n";
+				cin >> R[i];
+			} while (R[i] < 0);
+			tot += R[i];
+		}
+		return tot;
+	}
+
+}
+
+// Rank 3
+int R3(int R[]) {
+	int N;
+	int tot = 0;
+	cout << "insert number of vehicles in Rank 3\n";
+	cin >> N;
+	if (N <= 0) {
+		cout << "Null\n";
+		tot = 0;
+		return tot;
+	}
+	else {
+		for (int i = 1; i <= N; i++) {
+			do {
+				cout << "insert vehicle's RP\n";
+				cin >> R[i];
+			} while (R[i] < 0);
+			tot += R[i];
+		}
+		return tot;
+	}
+
+}
+
+// Rank 4
+int R4(int R[]) {
+	int N;
+	int tot = 0;
+	cout << "insert number of vehicles in Rank 4\n";
+	cin >> N;
+	if (N <= 0) {
+		cout << "Null\n";
+		tot = 0;
+		return tot;
+	}
+	else {
+		for (int i = 1; i <= N; i++) {
+			do {
+				cout << "insert vehicle's RP\n";
+				cin >> R[i];
+			} while (R[i] < 0);
+			tot += R[i];
+		}
+		return tot;
+	}
+
+}
+
+// Rank 5
+int R5(int R[]) {
+	int N;
+	int tot = 0;
+	cout << "insert number of vehicles in Rank 5\n";
+	cin >> N;
+	if (N <= 0) {
+		cout << "Null\n";
+		tot = 0;
+		return tot;
+	}
+	else {
+		for (int i = 1; i <= N; i++) {
+			do {
+				cout << "insert vehicle's RP\n";
+				cin >> R[i];
+			} while (R[i] < 0);
+			tot += R[i];
+		}
+		return tot;
+	}
+
+}
+
+// Rank 6
+int R6(int R[]) {
+	int N;
+	int tot = 0;
+	cout << "insert number of vehicles in Rank 6\n";
+	cin >> N;
+	if (N <= 0) {
+		cout << "Null\n";
+		tot = 0;
+		return tot;
+	}
+	else {
+		for (int i = 1; i <= N; i++) {
+			do {
+				cout << "insert vehicle's RP\n";
+				cin >> R[i];
+			} while (R[i] < 0);
+			tot += R[i];
+		}
+		return tot;
+	}
+
+}
+
+// Rank 7
+int R7(int R[]) {
+	int N;
+	int tot = 0;
+	cout << "insert number of vehicles in Rank 7\n";
+	cin >> N;
+	if (N <= 0) {
+		cout << "Null\n";
+		tot = 0;
+		return tot;
+	}
+	else {
+		for (int i = 1; i <= N; i++) {
+			do {
+				cout << "insert vehicle's RP\n";
+				cin >> R[i];
+			} while (R[i] < 0);
+			tot += R[i];
+		}
+		return tot;
+	}
+
+}
+
+void America(int R[], int Rtot[]) {
+	double BR;
+	cout << "insert America's max BR\n";
+	cin >> BR;
+	Rtot[1] = R1(R);
+	Rtot[2] = R2(R);
+	Rtot[3] = R3(R);
+	Rtot[4] = R4(R);
+	Rtot[5] = R5(R);
+	Rtot[6] = R6(R);
+	Rtot[7] = R7(R);
+	Rtot[0] = 0;
+	for (int i = 1; i <= 7; i++) {
+		Rtot[0] += Rtot[i];
+	}
+	Tot += Rtot[0];
+	
+	cout << "America (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		cout << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	cout << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+	res << "America (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		res << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	res << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+}
+
+void Germany(int R[], int Rtot[]) {
+	double BR;
+	cout << "insert Germany's max BR\n";
+	cin >> BR;
+	Rtot[1] = R1(R);
+	Rtot[2] = R2(R);
+	Rtot[3] = R3(R);
+	Rtot[4] = R4(R);
+	Rtot[5] = R5(R);
+	Rtot[6] = R6(R);
+	Rtot[7] = R7(R);
+	Rtot[0] = 0;
+	for (int i = 1; i <= 7; i++) {
+		Rtot[0] += Rtot[i];
+	}
+	Tot += Rtot[0];
+
+	cout << "Germany (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		cout << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	cout << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+	res << "Germany (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		res << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	res << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+}
+
+void USSR(int R[], int Rtot[]) {
+	double BR;
+	cout << "insert USSR's max BR\n";
+	cin >> BR;
+	Rtot[1] = R1(R);
+	Rtot[2] = R2(R);
+	Rtot[3] = R3(R);
+	Rtot[4] = R4(R);
+	Rtot[5] = R5(R);
+	Rtot[6] = R6(R);
+	Rtot[7] = R7(R);
+	Rtot[0] = 0;
+	for (int i = 1; i <= 7; i++) {
+		Rtot[0] += Rtot[i];
+	}
+	Tot += Rtot[0];
+
+	cout << "USSR (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		cout << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	cout << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+	res << "USSR (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		res << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	res << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+}
+
+void GBrit(int R[], int Rtot[]) {
+	double BR;
+	cout << "insert Great Britain's max BR\n";
+	cin >> BR;
+	Rtot[1] = R1(R);
+	Rtot[2] = R2(R);
+	Rtot[3] = R3(R);
+	Rtot[4] = R4(R);
+	Rtot[5] = R5(R);
+	Rtot[6] = R6(R);
+	Rtot[7] = R7(R);
+	Rtot[0] = 0;
+	for (int i = 1; i <= 7; i++) {
+		Rtot[0] += Rtot[i];
+	}
+	Tot += Rtot[0];
+
+	cout << "Great Britain (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		cout << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	cout << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+	res << "Great Britain (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		res << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	res << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+}
+
+void Japan(int R[], int Rtot[]) {
+	double BR;
+	cout << "insert Japan's max BR\n";
+	cin >> BR;
+	Rtot[1] = R1(R);
+	Rtot[2] = R2(R);
+	Rtot[3] = R3(R);
+	Rtot[4] = R4(R);
+	Rtot[5] = R5(R);
+	Rtot[6] = R6(R);
+	Rtot[7] = R7(R);
+	Rtot[0] = 0;
+	for (int i = 1; i <= 7; i++) {
+		Rtot[0] += Rtot[i];
+	}
+	Tot += Rtot[0];
+
+	cout << "Japan (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		cout << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	cout << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+	res << "Japan (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		res << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	res << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+}
+
+void China(int R[], int Rtot[]) {
+	double BR;
+	cout << "insert China's max BR\n";
+	cin >> BR;
+	Rtot[1] = R1(R);
+	Rtot[2] = R2(R);
+	Rtot[3] = R3(R);
+	Rtot[4] = R4(R);
+	Rtot[5] = R5(R);
+	Rtot[6] = R6(R);
+	Rtot[7] = R7(R);
+	Rtot[0] = 0;
+	for (int i = 1; i <= 7; i++) {
+		Rtot[0] += Rtot[i];
+	}
+	Tot += Rtot[0];
+
+	cout << "China (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		cout << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	cout << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+	res << "China (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		res << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	res << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+}
+
+void Italy(int R[], int Rtot[]) {
+	double BR;
+	cout << "insert Italy's max BR\n";
+	cin >> BR;
+	Rtot[1] = R1(R);
+	Rtot[2] = R2(R);
+	Rtot[3] = R3(R);
+	Rtot[4] = R4(R);
+	Rtot[5] = R5(R);
+	Rtot[6] = R6(R);
+	Rtot[7] = R7(R);
+	Rtot[0] = 0;
+	for (int i = 1; i <= 7; i++) {
+		Rtot[0] += Rtot[i];
+	}
+	Tot += Rtot[0];
+
+	cout << "Italy (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		cout << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	cout << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+	res << "Italy (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		res << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	res << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+}
+
+void France(int R[], int Rtot[]) {
+	double BR;
+	cout << "insert France's max BR\n";
+	cin >> BR;
+	Rtot[1] = R1(R);
+	Rtot[2] = R2(R);
+	Rtot[3] = R3(R);
+	Rtot[4] = R4(R);
+	Rtot[5] = R5(R);
+	Rtot[6] = R6(R);
+	Rtot[7] = R7(R);
+	Rtot[0] = 0;
+	for (int i = 1; i <= 7; i++) {
+		Rtot[0] += Rtot[i];
+	}
+	Tot += Rtot[0];
+
+	cout << "France (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		cout << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	cout << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+	res << "France (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		res << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	res << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+}
+
+void Sweden(int R[], int Rtot[]) {
+	double BR;
+	cout << "insert Sweden's max BR\n";
+	cin >> BR;
+	Rtot[1] = R1(R);
+	Rtot[2] = R2(R);
+	Rtot[3] = R3(R);
+	Rtot[4] = R4(R);
+	Rtot[5] = R5(R);
+	Rtot[6] = R6(R);
+	Rtot[7] = R7(R);
+	Rtot[0] = 0;
+	for (int i = 1; i <= 7; i++) {
+		Rtot[0] += Rtot[i];
+	}
+	Tot += Rtot[0];
+
+	cout << "Sweden (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		cout << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	cout << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+	res << "Sweden (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		res << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	res << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+}
+
+void Israel(int R[], int Rtot[]) {
+	double BR;
+	cout << "insert Israel's max BR\n";
+	cin >> BR;
+	Rtot[1] = 0;
+	Rtot[2] = 0;
+	Rtot[3] = 0;
+	Rtot[4] = R4(R);
+	Rtot[5] = R5(R);
+	Rtot[6] = R6(R);
+	Rtot[7] = R7(R);
+	Rtot[0] = 0;
+	for (int i = 1; i <= 7; i++) {
+		Rtot[0] += Rtot[i];
+	}
+	Tot += Rtot[0];
+
+	cout << "Israel (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		cout << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	cout << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+	res << "Israel (Max BR " << BR << ")\n";
+	for (int j = 1; j <= 7; j++) {
+		res << "RP Rank " << j << ": " << Separator(Rtot[j]) << endl;
+	}
+	res << "Total RP: " << Separator(Rtot[0]) << endl << endl;
+}
+
+int main() {
+	int R[100];
+	int Rtot[10];
+	America(R, Rtot);
+	Germany(R, Rtot);
+	USSR(R, Rtot);
+	GBrit(R, Rtot);
+	Japan(R, Rtot);
+	China(R, Rtot);
+	Italy(R, Rtot);
+	France(R, Rtot);
+	Sweden(R, Rtot);
+	Israel(R, Rtot);
+	cout << "Total RP of all Nations: " << Separator(Tot) << endl;
+	res << "Total RP of all Nations: " << Separator(Tot) << endl;
+	system("pause");
+	return 0;
+}
+//end of the code
+
+
+/*
+Pseudocode:
+
+Start code
+Declare Tot
+Open .txt file
+FUNCTION: First nation
+	Insert BR first nation
+	FUNCTION: Rank 
+		Insert number of vehicles
+		IF number of vehicle equals to 0
+			return 0
+			say "null"
+		ELSE
+			Loop x inserted value
+				DO
+					insert the RP value
+				WHILE RP value is below or equal to 0
+			Return Total rank RP
+Calculate the Total RP from each rank
+Add the result to "Tot"
+Separate thousands
+Say Total RP of Nation
+PROCESS IS REPEATED UNTIL ALL RANKs AND NATIONs HAVE THEIR VALUE FILLED
+EXCEPTION: ISRAEL'S RANK 1-3 HAVE THEIR VALUE SET TO 0
+say Total RP of all Nations
+End code
+*/
